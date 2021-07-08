@@ -31,19 +31,18 @@ This docker file uses Bitnami's Minideb image as the base, which has a very simi
 
 2. Build docker image in folder containing the package downloaded in step #1
 
-    `docker build -t IMAGE_NAME --build-arg package=PACKAGE_FILE .`
+`docker build -t IMAGE_NAME --build-arg package=PACKAGE_FILE .`
 
-    IMAGE_NAME   is the name of the image you want, e.g. tilia-phoenix:8.0
-    PACKAGE_FILE is the filename of the Deb package downloaded in step #1
+* **IMAGE_NAME** - Name of the image you want, e.g. tilia-phoenix:8.0
+* **PACKAGE_FILE** - Filename of the Deb package downloaded in step #1
 
-    NOTE: If this Dockerfile is in another folder you can reference it using
-          -f /path/to/this/Dockerfile
+NOTE: If this Dockerfile is in another folder you can reference it using `-f /path/to/this/Dockerfile`
 
 3. Run a container using this image
 
-    `docker run -p 8080:8022 IMAGE_NAME -p 8022 -u USERNAME -pw PASSWORD`
+`docker run -p 8080:8022 IMAGE_NAME -p 8022 -u USERNAME -pw PASSWORD`
 
-    IMAGE_NAME is the name you used in step #2
+`IMAGE_NAME` is the name you used in step #2
     USERNAME   is the name of a user in Tilia Cloud that can consume a valid
                Phoenix license that includes automation
     PASSWORD   is password of the Tilia Cloud user
