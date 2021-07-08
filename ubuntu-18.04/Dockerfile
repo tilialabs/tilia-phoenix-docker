@@ -7,7 +7,6 @@
 #
 # 1. Download Phoenix Auto Debian package (deb) from downloads.tilialabs.com
 #
-#
 # 2. Build docker image in folder containing the package downloaded in step #1
 #
 #    docker build -t IMAGE_NAME --build-arg package=PACKAGE_FILE .
