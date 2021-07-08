@@ -23,7 +23,7 @@ This docker file uses Debian Buster Slim as the base image, which is roughly 50M
 
 ### Bitnami Minideb Buster
 
-This docker file uses Bitnami's Minideb image as the base, which has a very similar install size as the Debian Buster Slim flavor above.
+This docker file uses Bitnami's Minideb image as the base, which has a very similar install size as the Debian Buster Slim flavor.
 
 ## Building and running images
 
@@ -36,7 +36,7 @@ This docker file uses Bitnami's Minideb image as the base, which has a very simi
 * **IMAGE_NAME** - Name of the image you want, e.g. tilia-phoenix:8.0
 * **PACKAGE_FILE** - Filename of the Deb package downloaded in step #1
 
-**NOTE**: If this Dockerfile is in another folder you can reference it using `-f /path/to/this/Dockerfile`
+**NOTE**: If this Dockerfile is in another folder you can reference it using the `-f /path/to/this/Dockerfile` argument.
 
 3. Run a container using this image
 
@@ -46,7 +46,7 @@ This docker file uses Bitnami's Minideb image as the base, which has a very simi
 * **USERNAME** - Name of a user in Tilia Cloud that can consume a valid Phoenix license that includes automation
 * **PASSWORD** - Password of the Tilia Cloud user
 
-**NOTE**: The first "-p" argument before IMAGE_NAME maps the TCP port inside the container (8022 in example above) to the host port (8080), while the second "-p" argument is passed into Phoenix to specify the port it uses inside the container.  The two container-side ports must match but can be mapped to a different host port.
+**NOTE**: The first "-p" argument before IMAGE_NAME maps the TCP port inside the container (8022 in example above) to the host port (8080), while the second "-p" argument is passed into Phoenix to specify the port it uses inside the container.  The two container-side ports must match but can be mapped to a different host port like in this example.
 
 ## Open source
 
