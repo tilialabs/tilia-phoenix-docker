@@ -1,7 +1,6 @@
 # tilia-phoenix-docker
 Docker files for building and running headless tilia Phoenix docker containers
 
-<a name="prerequisites"></a>
 ## Prerequisites
 
 - Valid tilia Cloud license of tilia Phoenix including the Automate module
@@ -26,13 +25,41 @@ This docker file uses Debian Buster Slim as the base image, which is roughly 50M
 
 This docker file uses Bitnami's Minideb image as the base, which has a very similar install size as the Debian Buster Slim flavor above.
 
+## Building and running images
+
+1. Download Phoenix Auto Debian package (deb) from [downloads.tilialabs.com](https://downloads.tilialabs.com)
+
+2. Build docker image in folder containing the package downloaded in step #1
+
+    `docker build -t IMAGE_NAME --build-arg package=PACKAGE_FILE .`
+
+    IMAGE_NAME   is the name of the image you want, e.g. tilia-phoenix:8.0
+    PACKAGE_FILE is the filename of the Deb package downloaded in step #1
+
+    NOTE: If this Dockerfile is in another folder you can reference it using
+          -f /path/to/this/Dockerfile
+
+3. Run a container using this image
+
+    `docker run -p 8080:8022 IMAGE_NAME -p 8022 -u USERNAME -pw PASSWORD`
+
+    IMAGE_NAME is the name you used in step #2
+    USERNAME   is the name of a user in Tilia Cloud that can consume a valid
+               Phoenix license that includes automation
+    PASSWORD   is password of the Tilia Cloud user
+
+    NOTE: The first "-p" argument before IMAGE_NAME maps the TCP port inside
+          the container (8022 in example above) to the host port (8080), while
+          the second "-p" argument is passed into Phoenix to specify the port
+          it uses inside the container.  The two container-side ports must
+          match but can be mapped to a different host port.
+
 ## Open source
 
 All code herein is open sourced under the Apache 2.0 license.  You are free to customize and use your modifications for commercial purposes with or without publishing your changes.
 
 Tilia Labs is the sole maintainer of this repository, but we encourage suggestions and pull requests to help make this client better than ever for our global graphic arts community!
 
-<a name="license"></a>
 ## License
 Copyright (c) 2021-* Tilia Labs Inc.
 
