@@ -1,7 +1,7 @@
 # Tilia Labs Inc.
 # Copyright (c) 2012-*, All Rights Reserved
 #
-# Phoenix Ubuntu 18 Docker image
+# Phoenix Ubuntu 20 Docker image
 #
 # Building and running an image:
 #
@@ -11,18 +11,20 @@
 #
 #    docker build -t IMAGE_NAME --build-arg package=PACKAGE_FILE .
 #
-#    where IMAGE_NAME is the name of the image you want, e.g. tilia-phoenix:8.0
-#    and PACKAGE_FILE is the filename of the Deb package downloaded in step #1
+#    IMAGE_NAME   is the name of the image you want, e.g. tilia-phoenix:8.0
+#    PACKAGE_FILE is the filename of the Deb package downloaded in step #1
 #
 #    NOTE: If this Dockerfile is in another folder you can reference it using
 #          -f /path/to/this/Dockerfile
 #
 # 3. Run a container using this image
 #
-#    docker run -p 8080:8022 IMAGE_NAME -p 8022 -k LICENSE_KEY
+#    docker run -p 8080:8022 IMAGE_NAME -p 8022 -u USERNAME -pw PASSWORD
 #
-#    where IMAGE_NAME is the name you used in step #2
-#    and LICENSE_KEY is a valid Phoenix license key (or use Tilia Cloud args)
+#    IMAGE_NAME is the name you used in step #2
+#    USERNAME   is the name of a user in Tilia Cloud that can consume a valid
+#               Phoenix license that includes automation
+#    PASSWORD   is password of the Tilia Cloud user
 #
 #    NOTE: The first "-p" argument before IMAGE_NAME maps the TCP port inside
 #          the container (8022 in example above) to the host port (8080), while
@@ -30,13 +32,13 @@
 #          it uses inside the container.  The two container-side ports must
 #          match but can be mapped to a different host port.
 
-# Using Ubuntu 18.04 as base image
-FROM ubuntu:18.04
+# Using Ubuntu 20.04 as base image
+FROM ubuntu:20.04
 
 # Set working directory to /usr/local/src to copy local installer over
 WORKDIR /usr/local/src
 
-# Run Ubuntu update and install dbus
+# Run update and install dbus
 RUN apt-get update && apt-get -y install dbus
 
 # Build argument of Phoenix Auto debian package file name
